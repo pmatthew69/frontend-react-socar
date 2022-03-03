@@ -40,7 +40,7 @@ const Login = () => {
             console.log(response.data)
 
             if(response?.data.loggedin){
-                dispatch(login({ user }));
+                dispatch(login( user ));
                 setIsLoading(false);
                 history.push('/');
             } 

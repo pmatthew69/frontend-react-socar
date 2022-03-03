@@ -14,9 +14,17 @@
   overflow: hidden;
 }
 
-.logo{
+/* .logo{
   width: 100px;
   cursor: pointer;
+} */
+
+.logo{
+  color: white; 
+  font-family: "Bradley Hand";
+  font-size: 40px; 
+  font-weight: bold;  
+  text-align: center; 
 }
 
 .navbar{
@@ -28,6 +36,7 @@
   justify-content: space-between;
 }
 
+
 .button{
   outline: none;
   color: #fbfcfd;
@@ -36,6 +45,10 @@
   border: 1px solid #fff;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.signin{
+  margin-left: 10px;
 }
 
 .content{

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Landing.css';
 
+import { useSelector } from 'react-redux';
+
+import Navbar from '../Navbar/Navbar';
+
 // Import Image
-import Logo from "../../images/logo.png";
 import Menu from "../../images/menu.png";
 import FB from "../../images/fb.png";
 import IG from "../../images/ig.png";
@@ -12,75 +15,26 @@ import Info from "../../images/info.png";
 import Bubble from "../../images/bubble.png";
 
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
-import php from '../../api/php';
-import { login, logout } from '../../redux/user/userAction';
-
-import PersonIcon from '@mui/icons-material/Person';
-
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from 'reactstrap';
 
 const Landing = () => {
     const history = useHistory();
-    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
 
-    const [loggedin, setloggedin] = useState(false);
-
-    useEffect(() => {
-        const checkAuth = async () => {
-            const response = await php.get('/me.php', {withCredentials: true})
-                .catch(err => console.log(err));
-            const user = response?.data.user;
-
-            console.log(response.data)
-            if(response?.data.loggedin){
-                dispatch(login({ user }));
-                setloggedin(true);
-            }
+    const bookCar = () => {
+        if(user.loggedin) {
+            history.push('/location');
         }
-        checkAuth();
-    }, [])
-
-    const handleLogout = () => {
-        const logoutFromServer = async () => {
-            const response = await php.get('/logout.php', {withCredentials: true})
-                .catch(err => console.log(err));
-            const status = response?.data.loggedin;
-            console.log(response.data);
-            if(!status){
-                dispatch(logout());
-                setloggedin(false);
-            }
+        else {
+            alert('Please log in first');
         }
-        logoutFromServer();
     }
-
-
-
     return(
         <div className="hero">
-            <div className="navbar">
-                <img src={Logo} class="logo"/>
-                {loggedin ? (
-                    <UncontrolledDropdown style={{outline: 'none'}}>
-                        <DropdownToggle style={{background: 'transparent'}} caret>
-                            <PersonIcon/>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem >Edit Profile</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
-                        </DropdownMenu>
-                    </UncontrolledDropdown> ) : (
-                        <button class="button" onClick={() => history.push('/register')}>Sign Up</button>
-                    )
-                }
-            </div>
+            <Navbar/>
             <div className="content">
                 <small>Welcome to </small>
-            <h1>SoCar</h1>
-            <button class="button">Take a tour</button>
+            <h1>Gas ‘N’ GO!</h1>
+            <button class="button" onClick={bookCar}>Book a car</button>
             </div>
             <div className="side-bar">
                 <img src={Menu} class="menu"/>

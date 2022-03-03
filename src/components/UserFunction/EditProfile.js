@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import './Register.css';
+import '../Auth/Register.css';
+import './EditProfile.css';
+
+import Navbar from '../Navbar/Navbar';
 
 import php from '../../api/php';
 
 import { useHistory } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AvatarImage from '../../images/avatar.svg';
 import BgImage from '../../images/bg.svg';
@@ -14,75 +17,61 @@ import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 
 import ReactLoading from 'react-loading';
+import { Nav } from 'reactstrap';
 
-const Register = () => {
-    const [email, setEmail] = useState("");
-    const [firstName, setfirstName] = useState("");
-    const [lastName, setlastName] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordConfiramtion, setPasswordConfiramtion] = useState("");
+const EditProfile = () => {
+    const user = useSelector(state => state.user);
+    const [firstName, setfirstName] = useState(user.firstName);
+    const [lastName, setlastName] = useState(user.lastName);
     const [isLoading, setIsLoading] = useState(false);
     const [infoValid, setInfoValid] = useState(false);
-    const [userExist, setUserExist] = useState(false);
     const history = useHistory();
 
     const handleSignUp = () => {
         setIsLoading(true);
         setInfoValid(false);
-        setUserExist(false);
-        if(password != passwordConfiramtion || email == null || firstName == null || lastName == null || passwordConfiramtion == null || password == null){
+        if(firstName == null || lastName == null){
             setIsLoading(false);
             setInfoValid(true);
         } else {
-            const postUserInformation = async () => {
-                const response = await php.post("/register.php", 
-                {
-                    email: email,
-                    password: password,
-                    password_confirmation: passwordConfiramtion,
+            const updateUserInformation = async () => {
+                const response = await php.post("/editprofile.php", 
+                { 
+                    userid: user.id,
                     first_name: firstName,
                     last_name: lastName,
                 }, 
                 { withCredentials: true })
                 .catch(err => {
-                    setEmail("");
-                    setfirstName("");
-                    setlastName("");
-                    setPassword("");
-                    setPasswordConfiramtion("");
+                    setfirstName(user.firstName);
+                    setlastName(user.lastName);
                     setIsLoading(false);
-                    setUserExist(true);
                 })
     
-                const signUpStatus = response?.data.status;
-                const existed = response?.data.existed;
+                const error = response?.data.error;
                 console.log(response.data)
 
-                if(existed){
+                if(!error){
                     setIsLoading(false);
-                    setUserExist(true);
-                }
-                else if(signUpStatus){
-                    setIsLoading(false);
-                    history.push('/login');
+                    history.push('/');
                 }
             }
-            postUserInformation();
+            updateUserInformation();
         }
     }
-
+    
     return (
-        <div className="bg-container">
-            <div className="register-container">
+        <div className="editprofile-bg-container">
+            <Navbar/>
+            <div style={{margin: 'auto'}} className="register-container">
                 <div className="wave">
                     <img className="wave-background" src={BgImage}/>
                 </div>
                 <div className="form-container">
                     <img className="avatar" src={AvatarImage}/>
-                    <h1 className="welcome">SIGN UP</h1>
+                    <h1 className="welcome">EDIT PROFILE</h1>
                     {infoValid && <h3 className="error">Information not valid</h3>}
-                    {userExist && <h3 className="error">User Exist</h3>}
-                    <div className="email-container">
+                    {/* <div className="email-container">
                         <EmailIcon/>
                         <input 
                             type="email" 
@@ -91,7 +80,7 @@ const Register = () => {
                             value={email}
                             required
                         />
-                    </div>
+                    </div> */}
                     <div className="name-container">
                         <PersonIcon/>
                         <input 
@@ -110,35 +99,21 @@ const Register = () => {
                             required
                         />
                     </div>
-                    <div className="password-container">
+                    {/* <div className="password-container">
                         <LockIcon/>
                         <input 
                             type="password" 
-                            placeholder="Password"
+                            placeholder="New Password"
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
                         />
-                    </div>
-                    <div className="password-container">
-                        <LockIcon/>
-                        <input 
-                            type="password" 
-                            placeholder="Confirm Password"
-                            onChange={(e) => setPasswordConfiramtion(e.target.value)}
-                            value={passwordConfiramtion}
-                            required
-                        />
-                    </div>
-                    <div className="redirect-container">
-                    <a onClick={() => history.push('/login')}><span>Already have account?</span></a>
-                        <a onClick={() => history.push('/forgot')}><span>Forgot Password?</span></a>
-                    </div>
+                    </div> */}
                     <button className="login-button" onClick={handleSignUp}>
                         {
                             isLoading ?
                             <ReactLoading type={'spinningBubbles'} color={"black"} width={40} height={40}/> :
-                            'Register'
+                            'Update'
                         }
                     </button>
                 </div>
@@ -147,4 +122,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default EditProfile;

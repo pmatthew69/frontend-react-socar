@@ -1,0 +1,105 @@
+.hero-checkout{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(#00545d, #000729);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+.hero-checkout .box{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px;
+}
+
+.box .title{
+    margin-bottom: 30px;
+}
+
+.box .desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.border-bottom-light{
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.border-bottom-bold{
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-size: large;
+}   
+
+
+.desc .option-row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+.desc .payment{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desc .payment .payment-box{
+    padding: 10px;
+    font-weight: normal;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.shopee{
+    border: 2px solid orange;
+}
+
+.grab{
+    border: 2px solid #00b14f;
+}
+
+.touch{
+    border: 2px solid #0047ba;
+}
+
+.banking{
+    border: 2px solid brown;
+}
+
+.lightext{
+    font-weight: lighter;
+}
+
+.icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-wrapper{
+    padding: 5px;
+    border-radius: 20px;
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+.booking-btn{
+    padding: 10px;
+    background-color: #00545d;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}

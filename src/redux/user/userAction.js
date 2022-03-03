@@ -16,9 +16,7 @@ const logoutSuccess = (payload) => {
 export const login = ( user ) => {
   return async (dispatch) => {
     dispatch(
-      loginSuccess({
-        user,
-      })
+      loginSuccess(user)
     );
   }
 }
