@@ -12,6 +12,7 @@ import EditProfile from './components/UserFunction/EditProfile';
 import History from './components/UserFunction/History';
 import CheckOut from './components/Transaction/CheckOut';
 import TransactionHistory from './components/Transaction/TransactionHistory';
+import Admin from './components/Admin/Admin';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -23,6 +24,9 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path='/admin'>
+          <Admin/>
+        </Route>
         <Route path='/transaction'>
           <TransactionHistory/>
         </Route>
