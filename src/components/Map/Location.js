@@ -19,7 +19,7 @@ const Location = () => {
         await geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
             .then(({ lat, lng }) => {
-                const location = {lat, lng};
+                const location = {lat, lng, address};
                 dispatch(storeLocation(location));
                 history.push('/map');
             }

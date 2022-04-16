@@ -5,6 +5,7 @@ import Landing from './components/Main/Landing';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Reset from './components/Auth/Reset';
+import ResetAdmin from './components/Auth/ResetAdmin';
 import Forgot from './components/Auth/Forgot';
 import GoogleMap from './components/Map/GoogleMap';
 import Location from './components/Map/Location';
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route path="/reset">
           <Reset/>
+        </Route>
+        <Route path="/resetadmin">
+          <ResetAdmin/>
         </Route>
         <Route path="/">
           <Landing/>

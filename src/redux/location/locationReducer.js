@@ -10,6 +10,7 @@ const locationReducer = ( state = initialState, action ) => {
                 ...state,
                 lat: action.payload.lat,
                 lng: action.payload.lng,
+                address : action.payload.address,
             };
         case "STORE_LOCATION_FAILED":
             return {

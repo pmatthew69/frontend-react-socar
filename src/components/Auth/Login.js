@@ -42,14 +42,15 @@ const Login = () => {
             if(response?.data.loggedin){
                 dispatch(login( user ));
                 setIsLoading(false);
-                history.push('/');
+                if(user.email == 'admin@gmail.com'){
+                    history.push('/admin')
+                }
+                else{
+                    history.push('/');    
+                }
             } 
         }
-        if(email == 'admin@gmail.com' && password == 'admin123'){
-            setIsLoading(false);
-            history.push('/admin');
-        }
-        else { postUserInformation(); }
+        postUserInformation();
     }
 
     return(

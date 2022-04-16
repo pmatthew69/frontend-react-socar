@@ -34,6 +34,7 @@ const CheckOut = () => {
     const history = useHistory();
     const carSelected = useSelector((state) => state.car);
     const user = useSelector((state) => state.user);
+    const location = useSelector((state) => state.location);
 
     let rate = carSelected.rate;
     const r = rate.toFixed(2); 
@@ -235,7 +236,7 @@ const CheckOut = () => {
                     </div>
                     <div className="border-bottom-light option-row">
                         <text>Zone</text>
-                        <text style={{fontWeight: 'bold'}}>Pulau Gadong</text>
+                        <text style={{fontWeight: 'bold'}}>{location.address}</text>
                     </div>
                 </div>
                 <div className="desc">

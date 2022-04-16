@@ -64,6 +64,46 @@ const carData = [
         distance: 0.0,
         origin: "",
     },
+    {
+        name: "BMW 330e HYBRID",
+        plate: generateRandomPlat(),
+        img: HondaHRV,
+        rate: 42,
+        seat: 4,
+        petrol: 86,
+        distance: 0.0,
+        origin: "",
+    },
+    {
+        name: "Volkswagen Passat",
+        plate: generateRandomPlat(),
+        img: HondaHRV,
+        rate: 21.9,
+        seat: 4,
+        petrol: 89,
+        distance: 0.0,
+        origin: "",
+    },
+    {
+        name: "Perodua Bezza",
+        plate: generateRandomPlat(),
+        img: HondaHRV,
+        rate: 10,
+        seat: 4,
+        petrol: 96,
+        distance: 0.0,
+        origin: "",
+    },
+    {
+        name: "Toyota NEW VIOS",
+        plate: generateRandomPlat(),
+        img: HondaHRV,
+        rate: 13.9,
+        seat: 4,
+        petrol: 94,
+        distance: 0.0,
+        origin: "",
+    },
 ]
 
 const CurrentLocationComponent = () => <img src={MeMarker} width="60px" height="60px"/>;
@@ -84,7 +124,7 @@ const GoogleMap = () => {
           lat: 59.95,
           lng: 30.33
         },
-        zoom: 10 
+        zoom: 13
     };
 
     const getRandomDistance = ( max ) => {
