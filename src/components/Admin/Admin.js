@@ -6,6 +6,8 @@ import php from '../../api/php';
 
 import { useHistory } from 'react-router-dom';
 
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 const d = new Date();
 const month= ["January","February","March","April","May","June","July",
             "August","September","October","November","December"];
@@ -68,6 +70,7 @@ const Admin = () => {
                 <div className="btn" onClick={handleChangePassword}>
                     Change Admin Password
                 </div>
+                <KeyboardArrowRightIcon onClick={() => history.push('/')}/>
             </div>
         </div>
     )

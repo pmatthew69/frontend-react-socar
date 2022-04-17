@@ -44,3 +44,8 @@
     color: black;
     background: linear-gradient(90deg, #FEB3A6 0%, #CDEBFF 100%);
 }
+
+.hero-admin .admin-container .MuiSvgIcon-root{
+    cursor: pointer;
+    font-size: 40px;
+}
