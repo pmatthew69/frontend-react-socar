@@ -14,6 +14,8 @@ import History from './components/UserFunction/History';
 import CheckOut from './components/Transaction/CheckOut';
 import TransactionHistory from './components/Transaction/TransactionHistory';
 import Admin from './components/Admin/Admin';
+import AllBookingList from './components/Admin/AllBookingList';
+import AddCar from './components/Admin/AddCar';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -25,6 +27,12 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path='/addcar'>
+          <AddCar/>
+        </Route>
+        <Route path='/allbookinglist'>
+          <AllBookingList/>
+        </Route>
         <Route path='/admin'>
           <Admin/>
         </Route>

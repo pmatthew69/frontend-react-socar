@@ -51,6 +51,14 @@ const Admin = () => {
         history.push('/resetadmin')
     }
 
+    const handleBookingList = () => {
+        history.push('/allbookinglist');
+    }
+
+    const handleAddCar = () => {
+        history.push('/addcar');
+    }
+
     return (
         <div className="hero-admin">
             <div className="admin-container">
@@ -69,6 +77,12 @@ const Admin = () => {
                 </div>
                 <div className="btn" onClick={handleChangePassword}>
                     Change Admin Password
+                </div>
+                <div className="btn" onClick={handleBookingList}>
+                    Booking List
+                </div>
+                <div className="btn" onClick={handleAddCar}>
+                    Add Car
                 </div>
                 <KeyboardArrowRightIcon onClick={() => history.push('/')}/>
             </div>

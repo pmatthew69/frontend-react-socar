@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './History.css';
+import React, {useState, useEffect } from 'react'
+import'./AllBookingList.css';
 
 import Navbar from '../Navbar/Navbar';
 
 import php from '../../api/php';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import Axia from '../../images/axia.jpeg';
 import HondaCity from '../../images/hondacity.jpeg';
@@ -52,34 +49,32 @@ const DescriptionComponent = ({ option, value }) => {
     )
 }
 
-
-const History = () => {
-    const user = useSelector((state) => state.user);
-    const [bookinglist, setbookinglist] = useState([]);
+const AllBookingList = () => {
+    const [allbookinglist, setallbookinglist] = useState([]);
     const [viewingdetails, setviewingdetails] = useState(false);
     const [details, setdetails] = useState({});
-    const history = useHistory();
 
     useEffect(() => {
-        const fetchUserBookingList = async () => {
-            const response = await php.post('/bookinglist.php', {
-                userid: user.id,
-            }).catch(err => console.log(err));
+        const fetchAllBookingList = async () => {
+            const response = await php.get('/allbookinglist.php')
+                .catch(err => console.log(err));
+
             console.log(response.data.list)
-            setbookinglist(response?.data.list);
+            setallbookinglist(response?.data.list);
         }
-        fetchUserBookingList();
+        fetchAllBookingList();
     }, [])
-    
+
+
     return (
-        <div className="hero-history">
+        <div className="hero-allbookinglist">
             <Navbar/>
             <div className="list-box">
-                <h1 style={{marginBottom: '30px'}}>Booking History</h1>
+                <h1 style={{marginBottom: '30px'}}>All Booking List</h1>
                {!viewingdetails &&
-                    bookinglist.map(data => (
+                    allbookinglist.map(data => (
                         <div className="booking-box">
-                            <img src={getImage(data.carname)} alt={data.carname}/>
+                            <img src="https://drive.google.com/uc?export=view&id=1dxHujTHMIsn7KqN4YdOCjttmEjmF6mY9"/>
                             <div className="booking-desc">
                                 <h3>{data.carname}</h3>
                                 <text>{data.carplate}</text>
@@ -121,4 +116,4 @@ const History = () => {
     )
 }
 
-export default History;
+export default AllBookingList;

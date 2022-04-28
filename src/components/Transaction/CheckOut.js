@@ -36,12 +36,9 @@ const CheckOut = () => {
     const user = useSelector((state) => state.user);
     const location = useSelector((state) => state.location);
 
-    let rate = carSelected.rate;
-    const r = rate.toFixed(2); 
-
     const [hour, sethour] = useState(1);
     const [payment, setpayment] = useState(0);
-    const [price, setprice] = useState(carSelected.rate + 5);
+    const [price, setprice] = useState(carSelected.rate);
     const [pickuptime, setpickuptime] = useState({});
     const [returntime, setreturntime] = useState({});
     const [agree, setagree] = useState(false);
@@ -56,7 +53,7 @@ const CheckOut = () => {
         time.returnMinute = d.getMinutes();
         time.returntimestamp = d.getTime();
         setreturntime(time);
-        setprice((hour + 1) * carSelected.rate + 5);
+        setprice((hour + 1) * carSelected.rate);
         sethour(hour + 1);
     }
 
@@ -76,7 +73,7 @@ const CheckOut = () => {
             time.returntimestamp = d.getTime();
             setreturntime(time);
         }
-        setprice((h) * carSelected.rate + 5);
+        setprice((h) * carSelected.rate);
         sethour(h);
     }
 
@@ -180,7 +177,7 @@ const CheckOut = () => {
                 </div>  
                 <div className="desc">
                     <TitleComponent title="Reservation fee"/>
-                    <DescriptionComponent option="Rental rate" value={`RM${r}`}/>
+                    <DescriptionComponent option="Rental rate" value={`RM${carSelected.rate}`}/>
                     <DescriptionComponent option="Super Collision Damage Waiver" value="RM5.00"/>
                     <div className="border-bottom-light option-row">
                         <text>Hours</text>
